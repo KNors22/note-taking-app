@@ -10,11 +10,11 @@ A simple note taking application built as a midterm project. This repository con
    ```
 2. Change to the project directory:
    ```bash
-   cd notetaking-app
+   cd note-taking-app
    ```
 3. Install dependencies:
    ```bash
-   npm installwhic
+   npm install
    ```
 4. Start the application:
    ```bash
@@ -97,9 +97,12 @@ A simple note taking application built as a midterm project. This repository con
 note-taking-app/
 │
 ├── controllers/
+│   ├── authController.js
 │   ├── userController.js
 │   ├── noteController.js
 │   └── collectionController.js
+├── middleware/
+│   └── authMiddleware.js
 ├── models/
 │   ├── userModel.js
 │   ├── noteModel.js
@@ -113,6 +116,38 @@ note-taking-app/
 ├── README.md
 ├── CHANGELOG.md
 └── LICENSE
+```
+
+## RESTful API Endpoints
+```
+# PUBLIC PAGES
+GET     /                 Home
+GET     /about            About
+GET     /register         Register form
+POST    /register         Create user
+GET     /login            Login form
+POST    /login            Log in user
+
+# PROTECTED PAGES
+GET     /dashboard        User dashboard
+GET     /notes            All notes
+GET     /notes/new        Create note form
+POST    /notes            Create note
+GET     /notes/:id        View single note
+GET     /notes/:id/edit   Edit note form
+PUT     /notes/:id        Update note
+DELETE  /notes/:id        Delete note
+
+GET     /collections      All collections
+POST    /collections      Create collection
+GET     /collections/:id  View collection notes
+GET     /collections/:id/edit Edit collection form
+PUT     /collections/:id  Update collection
+DELETE  /collections/:id  Delete collection
+
+GET     /profile          User profile
+PUT     /profile          Update profile
+POST    /logout           Log out
 ```
 
 ## Authors and Acknowledgements

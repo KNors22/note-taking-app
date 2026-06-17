@@ -93,12 +93,15 @@ A simple note taking application built as a midterm project. This repository con
   * Includes important details for future development and contributions.
 
 ## File structure
-```notetaking-app/
+```
+note-taking-app/
+│
 ├── controllers/
 ├── models/
 ├── routes/
 ├── public/
 ├── tests/
+├── views/
 ├── app.js
 ├── package.json
 ├── README.md

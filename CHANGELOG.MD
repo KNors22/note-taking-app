@@ -11,12 +11,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added RESTful API routes for managing notes.
 * Added a simple front-end interface using HTML and CSS.
 * Added front-end integration with the backend API to display, create, edit, and delete notes.
-* Added user authentication to support personalized note collections.
 * Added server-side validation for incoming note and user data.
 * Added clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
 * Added project documentation with local setup instructions.
-* Added API documentation covering endpoints, request formats, response formats, and developer notes.
 
+## [0.3.1] 2026-06-17
+
+### Added
+- Routers for handling registration, login and logout views.
+- Initial API documentation covering endpoints, request formats, and response formats.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.3.0...v0.3.1)
 
 ## [0.3.0] 2026-06-17
 

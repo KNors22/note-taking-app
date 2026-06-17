@@ -12,19 +12,19 @@ app.set('view engine', 'ejs');
 
 // CONNECT TO MONGODB
 mongoose
-    .connect(MONGO_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => console.log('Error while connecting to DB: ', err))
-;
+  .connect(MONGO_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.log('Error while connecting to DB: ', err))
+  ;
 
 // Send a 404 for any other route not defined
 app.use((_, res) => {
-    res.status(404).send('404 Not Found');
+  res.status(404).send('404 Not Found');
 });
 
 // Listen to specific port
 app.listen(PORT, () => {
-    console.log(`>> Server is running on 'http://localhost:${PORT}'. Yay!`);
+  console.log(`>> Server is running on 'http://localhost:${PORT}'. Yay!`);
 });
 
 // Listen for the SIGINT signal (Ctrl+C) to gracefully close the MongoDB connection

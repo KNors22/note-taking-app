@@ -9,9 +9,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Added
 
 * Added RESTful API routes for managing notes.
-* Added CRUD functionality for notes, including creating, reading, updating, and deleting notes.
-* Added data models for interacting with notes in the database.
-* Added database integration to store note data.
 * Added a simple front-end interface using HTML and CSS.
 * Added front-end integration with the backend API to display, create, edit, and delete notes.
 * Added user authentication to support personalized note collections.
@@ -22,6 +19,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added API documentation covering endpoints, request formats, response formats, and developer notes.
 
 
+## [0.2.0] 2026-06-17
+
+### Added
+- MongoDB integration for storing note data, including connection setup and data models.
+- Request handlers for notes, collections, and users in `controllers/` (CRUD operations).
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.1.0...v0.2.0)
+
+
 ## [0.1.0] 2026-06-17
 
 ### Added
@@ -29,10 +35,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - MongoDB database models (e.g. Note, User, Collection) for interacting with notes in the database.
 
 ### Fixed
-
 - Compare link in the changelog for version 0.0.1 and 0.0.2.
 
 [Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.0.2...v0.1.0)
+
 
 ## [0.0.2] 2026-06-17
 

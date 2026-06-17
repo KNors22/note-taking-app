@@ -47,38 +47,5 @@ const noteSchema = new mongoose.Schema(
   }
 );
 
-
-async function createNote(properties) {
-    const newNote = await Note.create(properties);
-    return newNote.toObject();
-}
-
-async function readNote(filter) {
-    const result = await Note.findOne(filter).lean();
-    return result;
-}
-
-async function updateNote(filter, update) {
-    const result = await Note.findOneAndUpdate(filter, update, {
-        new: true,
-        runValidators: true,
-    }).lean();
-
-    return result;
-}
-
-async function deleteNote(filter) {
-    const result = await Note.deleteOne(filter);
-    return result;
-}
-
-
 const Note = mongoose.model('Note', noteSchema);
-
-module.exports = {
-    Note,
-    createNote,
-    readNote,
-    updateNote,
-    deleteNote,
-};
+module.exports = { Note };

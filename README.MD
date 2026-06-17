@@ -97,7 +97,13 @@ A simple note taking application built as a midterm project. This repository con
 note-taking-app/
 │
 ├── controllers/
+│   ├── userController.js
+│   ├── noteController.js
+│   └── collectionController.js
 ├── models/
+│   ├── userModel.js
+│   ├── noteModel.js
+│   └── collectionModel.js
 ├── routes/
 ├── public/
 ├── tests/

@@ -1,0 +1,38 @@
+{
+  "name": "notetaking-app",
+  "version": "0.0.1",
+  "description": "A full-stack Node.js and Express note-taking app with CRUD APIs, authentication, validation, database storage, and a simple frontend",
+  "keywords": [
+    "note",
+    "app",
+    "personal"
+  ],
+  "homepage": "https://github.com/KNors22/note-taking-app#readme",
+  "bugs": {
+    "url": "https://github.com/KNors22/note-taking-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KNors22/note-taking-app.git"
+  },
+  "license": "MIT",
+  "author": "Andrey Gonzalez",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test" : "mocha test/**/*.test.js -exit"
+  },
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongodb": "^7.3.0"
+  },
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "mocha": "^11.7.6",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
+  }
+}

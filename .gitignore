@@ -1,6 +1,9 @@
+.env
 .vscode
 .DS_Store
 .DS_Store?
 
-_syntax_rules.md
-.env
+_rules.md
+
+node_modules/
+package-lock.json

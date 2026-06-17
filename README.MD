@@ -14,7 +14,7 @@ A simple note taking application built as a midterm project. This repository con
    ```
 3. Install dependencies:
    ```bash
-   npm install
+   npm installwhic
    ```
 4. Start the application:
    ```bash
@@ -92,11 +92,23 @@ A simple note taking application built as a midterm project. This repository con
   * Provides expected request and response formats.
   * Includes important details for future development and contributions.
 
+## File structure
+```notetaking-app/
+├── controllers/
+├── models/
+├── routes/
+├── public/
+├── tests/
+├── app.js
+├── package.json
+├── README.md
+├── CHANGELOG.md
+└── LICENSE
+```
 
 ## Authors and Acknowledgements
-- Author: Your Name
-- Instructor: [Instructor Name]
-- Thanks to the course staff and classmates for feedback and support.
+- Author: Andrey Gonzalez
+- Instructor: Martin Lee (from Circuit Stream)
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.

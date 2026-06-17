@@ -8,9 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Added
 
-* Initialized a new Node.js project for the Note-Taking App.
 * Added an Express.js server to handle HTTP requests.
-* Added a structured project layout with folders for routes, controllers, models, and supporting components.
 * Added RESTful API routes for managing notes.
 * Added CRUD functionality for notes, including creating, reading, updating, and deleting notes.
 * Added database integration to store note data.
@@ -23,6 +21,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
 * Added project documentation with local setup instructions.
 * Added API documentation covering endpoints, request formats, response formats, and developer notes.
+
+[Full Changelog](https://github.com/knors22/note-app/compare/v0.0.2...HEAD)
+
+## [0.0.2] 2026-06-17
+
+### Added
+- `controllers/` folder for handling business logic related to notes and user authentication.
+- `models/` folder for defining data schemas and interacting with the database.
+- `routes/` folder for defining API endpoints for notes and user authentication.
+- `public/` folder for static assets such as HTML, CSS, and JavaScript files for the front-end interface.
+- `tests/` folder for unit and integration tests
+- `package.json` with project dependencies and scripts for running the application and tests.
+- `app.js` as the main entry point for the Express.js server with boilerplate code
+
+[Full Changelog](https://github.com/knors22/note-app/compare/v0.0.1...v0.0.2)
 
 ## [0.0.1] 2026-06-17
 

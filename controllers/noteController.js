@@ -1,5 +1,5 @@
-const Note = require('../models/Note');
-const Collection = require('../models/Collection');
+const Note = require('../models/noteModel');
+const Collection = require('../models/collectionModel');
 
 // GET /notes
 // Show all notes for the logged-in user
@@ -166,11 +166,11 @@ const deleteNote = async (req, res) => {
 };
 
 module.exports = {
-  getAllNotes,
-  getNewNoteForm,
-  createNote,
-  getNoteById,
-  getEditNoteForm,
-  updateNote,
-  deleteNote
+    getAllNotes,
+    getNewNoteForm,
+    createNote,
+    getNoteById,
+    getEditNoteForm,
+    updateNote,
+    deleteNote
 }

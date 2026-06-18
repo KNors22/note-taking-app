@@ -15,6 +15,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
 * Added project documentation with local setup instructions.
 
+
+## [0.3.2] 2026-06-18
+
+### Fixed
+- Incorrect `.js` file name imports in the `controllers/*.js` files that caused a runtime error.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.3.1...v0.3.2)
+
+
 ## [0.3.1] 2026-06-17
 
 ### Added
@@ -23,12 +32,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 [Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.3.0...v0.3.1)
 
+
 ## [0.3.0] 2026-06-17
 
 ### Added
 - Authorization logic to ensure users can only access and modify their own notes.
 
 [Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.2.0...v0.3.0)
+
 
 ## [0.2.0] 2026-06-17
 
@@ -63,6 +74,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - `app.js` as the main entry point for the Express.js server with boilerplate code
 
 [Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.0.1...v0.0.2)
+
 
 ## [0.0.1] 2026-06-17
 

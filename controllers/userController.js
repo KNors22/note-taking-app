@@ -1,6 +1,6 @@
-const User = require("../models/User");
-const Note = require("../models/Note");
-const Collection = require("../models/Collection");
+const User = require("../models/userModel");
+const Note = require("../models/noteModel");
+const Collection = require("../models/collectionModel");
 
 // GET /profile
 // Show logged-in user's profile

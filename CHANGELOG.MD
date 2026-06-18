@@ -16,6 +16,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added project documentation with local setup instructions.
 
 
+## [0.3.3] 2026-06-18
+
+### Fixed
+- MongoDB connection issues that caused the application to fail when trying to access the database.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.3.2...v0.3.3)
+
+
 ## [0.3.2] 2026-06-18
 
 ### Fixed

@@ -5,6 +5,9 @@ const methodOverride = require('method-override');
 
 require('dotenv').config();
 
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const authRoutes = require('./routes/authRoutes');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -20,8 +23,25 @@ app.set('view engine', 'ejs');
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.log('Error while connecting to DB: ', err))
+  .catch((err) => console.log('\n\nError while connecting to DB: ', err))
   ;
+
+
+// CONNECT REQUEST HANDLERS TO ROUTE HANDLERS
+app.get('/', (req, res) => {
+  res.status(200).render('home', {})
+});
+
+// TESTING CODE ONLY
+if (process.env.npm_lifecycle_event === 'dev' ) {
+  app.get('/dashboard', dashboardRoutes);
+  app.use('/', authRoutes);     // Registration and login pages
+}
+else {
+  // FIRST AUTHENTICATE, THEN PROCESS REQUESTS
+  app.use('/', authRoutes);     // Registration and login pages
+  app.get('/dashboard', dashboardRoutes); // PROD
+}
 
 // Send a 404 for any other route not defined
 app.use((_, res) => {
@@ -30,7 +50,7 @@ app.use((_, res) => {
 
 // Listen to specific port
 app.listen(PORT, () => {
-  console.log(`>> Server is running on 'http://localhost:${PORT}'. Yay!`);
+  console.log(`>> Server is running at 'http://localhost:${PORT}'.`);
 });
 
 // Listen for the SIGINT signal (Ctrl+C) to gracefully close the MongoDB connection

@@ -16,6 +16,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added project documentation with local setup instructions.
 
 
+## [0.4.3] 2026-06-19
+
+### Added
+- Implement dashboard and authentication routes.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.4.2...v0.4.3)
+
+
 ## [0.4.2] 2026-06-19
 
 ### Added

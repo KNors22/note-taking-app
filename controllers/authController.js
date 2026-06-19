@@ -34,8 +34,8 @@ const getLoginForm = (req, res) => {
 
 // POST /login
 const loginUser = passport.authenticate('local', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/login',
+  successRedirect: 'dashboard',
+  failureRedirect: 'auth/login',
 });
 
 // POST /logout

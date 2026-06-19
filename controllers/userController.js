@@ -6,7 +6,7 @@ const Collection = require("../models/collectionModel");
 // Show logged-in user's profile
 const getProfile = async (req, res) => {
   try {
-    res.render("users/profile", { user: req.user });
+    res.render("user/profile", { user: req.user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading profile");
@@ -17,7 +17,7 @@ const getProfile = async (req, res) => {
 // Show edit profile form
 const getEditProfileForm = async (req, res) => {
   try {
-    res.render("users/edit", { user: req.user });
+    res.render("user/edit", { user: req.user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error loading profile edit form");
@@ -46,7 +46,7 @@ const updateProfile = async (req, res) => {
       return res.status(404).render("404");
     }
 
-    res.redirect("/profile");
+    res.redirect("/user/profile");
   } catch (error) {
     console.error(error);
     res.status(400).send("Error updating profile");

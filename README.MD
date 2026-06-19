@@ -109,8 +109,14 @@ note-taking-app/
 │   └── collectionModel.js
 ├── routes/
 ├── public/
+│   └── css/
 ├── tests/
 ├── views/
+│   ├── auth/
+│   ├── collections/
+│   ├── notes/
+│   ├── partials/
+│   └── user/
 ├── app.js
 ├── package.json
 ├── README.md
@@ -122,7 +128,6 @@ note-taking-app/
 ```
 # PUBLIC PAGES
 GET     /                 Home
-GET     /about            About
 GET     /register         Register form
 POST    /register         Create user
 GET     /login            Login form

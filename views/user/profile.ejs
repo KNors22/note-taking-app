@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Profile</p>
+        <h1><%= user && user.username ? user.username : 'Your Account' %></h1>
+        <p>View and manage your account details.</p>
+      </div>
+
+      <div class="dashboard-actions">
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+        <a href="/user/profile/edit" class="btn btn-primary">Edit Profile</a>
+      </div>
+    </section>
+
+    <section class="dashboard-grid profile-grid" aria-label="Profile details">
+      <article class="dashboard-card profile-card">
+        <h2>Account Details</h2>
+
+        <dl class="profile-details">
+          <div>
+            <dt>Username</dt>
+            <dd><%= user && user.username ? user.username : 'Not set' %></dd>
+          </div>
+
+          <div>
+            <dt>Email</dt>
+            <dd><%= user && user.email ? user.email : 'Not set' %></dd>
+          </div>
+
+          <% if (user && user.createdAt) { %>
+            <div>
+              <dt>Member Since</dt>
+              <dd><%= new Date(user.createdAt).toLocaleDateString() %></dd>
+            </div>
+          <% } %>
+        </dl>
+      </article>
+
+      <article class="dashboard-card profile-card">
+        <h2>Account Actions</h2>
+        <p>Delete your account only if you no longer need your notes or collections.</p>
+
+        <form action="/user/profile?_method=DELETE" method="POST" class="danger-form">
+          <button type="submit" class="btn btn-danger">
+            Delete Account
+          </button>
+        </form>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

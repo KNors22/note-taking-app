@@ -24,9 +24,9 @@ const collectionSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true,   // Used for creation and modification timestamp
   }
 );
 
 const Collection = mongoose.model('Collection', collectionSchema);
-module.exports = { Collection };
+module.exports = Collection;

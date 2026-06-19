@@ -16,6 +16,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added project documentation with local setup instructions.
 
 
+## [0.4.1] 2026-06-19
+
+### Added
+- User views and styles for profile and editing user information.
+
+### Fixed
+- Exporting models in `models/*.js` files to ensure they can be imported correctly.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.4.0...v0.4.1)
+
+
 ## [0.4.0] 2026-06-19
 
 ### Added

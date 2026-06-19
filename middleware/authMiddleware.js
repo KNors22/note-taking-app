@@ -1,5 +1,18 @@
+const isDevAuthBypass = process.env.npm_lifecycle_event === 'dev';
+
+const devUser = {
+  _id: '000000000000000000000001',
+  username: 'devuser',
+  email: 'dev@example.com',
+};
+
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
+  if (isDevAuthBypass) {
+    req.user = req.user || devUser;
+    return next();
+  }
+
+  if (req.isAuthenticated && req.isAuthenticated()) {
     return next();
   }
 
@@ -7,7 +20,11 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function ensureGuest(req, res, next) {
-  if (!req.isAuthenticated()) {
+  if (isDevAuthBypass) {
+    return next();
+  }
+
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
     return next();
   }
 

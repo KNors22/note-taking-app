@@ -50,9 +50,9 @@ const logoutUser = (req, res, next) => {
 };
 
 module.exports = {
-    getRegisterForm,
-    registerUser,
-    getLoginForm,
-    loginUser,
-    logoutUser,
+  getRegisterForm,
+  registerUser,
+  getLoginForm,
+  loginUser,
+  logoutUser,
 }

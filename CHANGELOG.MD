@@ -16,6 +16,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added project documentation with local setup instructions.
 
 
+## [0.4.2] 2026-06-19
+
+### Added
+- Dev profile and functions for testing and debugging purposes during development.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.4.1...v0.4.2)
+
+
 ## [0.4.1] 2026-06-19
 
 ### Added

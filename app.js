@@ -1,11 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const methodOverride = require('method-override');
+
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3030;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/test';
+const PORT = process.env.PORT || 3000;
+
+const MONGO_URI = process.env.npm_lifecycle_event === 'dev' 
+  ?  process.env.MONGO_URI_LOCAL 
+  :  process.env.MONGO_URI_USER
+;
 
 // SETUP INITIALIZATION
 app.set('view engine', 'ejs');

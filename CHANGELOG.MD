@@ -9,11 +9,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Added
 
 * Added RESTful API routes for managing notes.
-* Added a simple front-end interface using HTML and CSS.
 * Added front-end integration with the backend API to display, create, edit, and delete notes.
-* Added server-side validation for incoming note and user data.
 * Added clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
 * Added project documentation with local setup instructions.
+
+
+## [0.6.0] 2026-06-19
+
+## Changed
+- Username can now be 4 characters long at minimum instead of 6 characters.
+
+### Added
+- Passport.js for user authentication, including local strategy for username and password authentication.
+- Session management using `express-session` to maintain user sessions across requests.
+- Account deletion confirmation and handling to allow users to delete their accounts securely.
+- Account editing validation to ensure username or email does not already exist.
+
+### Fixed
+- Local login did not persist over HTTP. `cookie.secure` is set to false during development to allow cookies to be sent over HTTP, enabling session persistence for local testing.
+- Replace deprecated `new : true` in `findOneAndUpdate` with `returnDocument: 'after'` to ensure the updated document is returned after an update operation.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.5.0...v0.6.0)
 
 
 ## [0.5.0] 2026-06-19

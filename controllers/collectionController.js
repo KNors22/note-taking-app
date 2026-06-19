@@ -103,7 +103,7 @@ const updateCollection = async (req, res) => {
                 description,
             },
             {
-                new: true,
+                returnDocument: 'after',
                 runValidators: true,
             },
         );

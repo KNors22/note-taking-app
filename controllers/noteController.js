@@ -121,7 +121,7 @@ const updateNote = async (req, res) => {
         isArchived: isArchived === 'on',
       },
       {
-        new: true,
+        returnDocument: 'after',
         runValidators: true,
       }
     );
@@ -150,7 +150,7 @@ const deleteNote = async (req, res) => {
         isDeleted: true,
       },
       {
-        new: true,
+        returnDocument: 'after',
       }
     );
 

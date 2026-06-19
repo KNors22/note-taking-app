@@ -9,7 +9,7 @@ const getProfile = async (req, res) => {
     res.render("user/profile", { user: req.user });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error loading profile");
+    res.status(500).send("Error loading profile. Please try again.");
   }
 };
 
@@ -20,7 +20,7 @@ const getEditProfileForm = async (req, res) => {
     res.render("user/edit", { user: req.user });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error loading profile edit form");
+    res.status(500).send("Error loading profile edit form. Please try again.");
   }
 };
 
@@ -37,7 +37,7 @@ const updateProfile = async (req, res) => {
         email,
       },
       {
-        new: true,
+        returnDocument: 'after',
         runValidators: true,
       },
     );
@@ -46,11 +46,25 @@ const updateProfile = async (req, res) => {
       return res.status(404).render("404");
     }
 
-    res.redirect("/user/profile");
-  } catch (error) {
-    console.error(error);
-    res.status(400).send("Error updating profile");
-  }
+    res.redirect("/dashboard");    // SUCCESS!
+
+    } catch (error) {
+      console.error(error);
+
+      // Check which field aleady exists
+      const duplicateField = error.keyPattern?.username
+        ? 'username'
+        : error.keyPattern?.email ? 'email' : null;
+
+      const errorMessage = duplicateField
+        ? `That ${duplicateField} is already in use. Please choose another one.`
+        : error.message;
+
+      return res.status(400).render("user/edit", {
+        error: errorMessage,
+        user: req.user,
+      });
+    }
 };
 
 // DELETE /profile

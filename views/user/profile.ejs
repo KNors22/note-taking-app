@@ -39,7 +39,7 @@
           <% if (user && user.createdAt) { %>
             <div>
               <dt>Member Since</dt>
-              <dd><%= new Date(user.createdAt).toLocaleDateString() %></dd>
+              <dd><%= new Date(user.createdAt).toLocaleDateString('en-ca') %></dd>
             </div>
           <% } %>
         </dl>
@@ -49,13 +49,19 @@
         <h2>Account Actions</h2>
         <p>Delete your account only if you no longer need your notes or collections.</p>
 
-        <form action="/user/profile?_method=DELETE" method="POST" class="danger-form">
-          <button type="submit" class="btn btn-danger">
+        <form action="/user/profile?_method=DELETE" method="POST" class="danger-form" data-delete-account-form>
+          <button type="submit" class="btn btn-danger" data-confirm-delete-button aria-describedby="delete-account-status">
             Delete Account
           </button>
+          <button type="button" class="btn btn-secondary nevermind" data-cancel-delete-button hidden>
+            Nevermind
+          </button>
+          <p id="delete-account-status" class="delete-account-status" role="status" aria-live="polite"></p>
         </form>
       </article>
     </section>
   </main>
+
+  <script src="/js/profile.js"></script>
 </body>
 </html>

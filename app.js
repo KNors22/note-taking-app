@@ -1,7 +1,10 @@
 const express = require('express');
+const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const path = require('path');
-const methodOverride = require('method-override');
+
+const session = require('express-session');
+const passport = require('./middleware/passport');
 
 require('dotenv').config();
 
@@ -26,10 +29,27 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));   // Allows for PUT and DELETE in HTML forms
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// CONFIGURE AUTH SESSION USING PASSPORT
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    sameSite: 'lax', 
+    secure: process.env.npm_lifecycle_event !== 'dev',  // ‼️ MODIFY BEFORE PRODUCTION!!
+  },
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // CONNECT TO MONGODB
 mongoose
   .connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => console.log('>> Connected to MongoDB\n'))
   .catch((err) => console.log('\n\nError while connecting to DB: ', err))
   ;
 

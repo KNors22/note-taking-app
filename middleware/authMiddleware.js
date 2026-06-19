@@ -1,4 +1,4 @@
-const isDevAuthBypass = process.env.npm_lifecycle_event === 'dev';
+// const isDevAuthBypass = false //process.env.npm_lifecycle_event === 'dev';
 
 const devUser = {
   _id: '000000000000000000000001',
@@ -7,10 +7,19 @@ const devUser = {
 };
 
 function ensureAuthenticated(req, res, next) {
-  if (isDevAuthBypass) {
-    req.user = req.user || devUser;
-    return next();
-  }
+  // if (isDevAuthBypass) {
+  //   req.user = req.user || devUser;
+  //   return next();
+  // }
+
+  // ‼️ TESTING ONLY
+  // try {
+  //   if (process.env.npm_lifecycle_event === 'dev')
+  //   console.log(`[authMiddleware] 'req.isAuthenticated()': ${req.isAuthenticated()}`);
+  // } catch (e) {
+  //   console.log('[authMiddleware] ERROR! ', e.message, '\n\n');
+  //   throw(e);
+  // }
 
   if (req.isAuthenticated && req.isAuthenticated()) {
     return next();
@@ -20,9 +29,9 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function ensureGuest(req, res, next) {
-  if (isDevAuthBypass) {
-    return next();
-  }
+  // if (isDevAuthBypass) {
+  //   return next();
+  // }
 
   if (!req.isAuthenticated || !req.isAuthenticated()) {
     return next();

@@ -16,6 +16,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added project documentation with local setup instructions.
 
 
+## [0.5.0] 2026-06-19
+
+### Added
+- Routers for notes, collections, and users.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.4.3...v0.5.0)
+
+
 ## [0.4.3] 2026-06-19
 
 ### Added

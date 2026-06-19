@@ -7,6 +7,9 @@ require('dotenv').config();
 
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const authRoutes = require('./routes/authRoutes');
+const noteRoutes = require('./routes/noteRoutes');
+const collectionRoutes = require('./routes/collectionRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +21,10 @@ const MONGO_URI = process.env.npm_lifecycle_event === 'dev'
 
 // SETUP INITIALIZATION
 app.set('view engine', 'ejs');
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));   // Allows for PUT and DELETE in HTML forms
+app.use(express.static(path.join(__dirname, 'public')));
 
 // CONNECT TO MONGODB
 mongoose
@@ -42,6 +49,10 @@ else {
   app.use('/', authRoutes);     // Registration and login pages
   app.get('/dashboard', dashboardRoutes); // PROD
 }
+
+app.use('/notes', noteRoutes);
+app.use('/collections', collectionRoutes);
+app.use('/user', userRoutes);
 
 // Send a 404 for any other route not defined
 app.use((_, res) => {
@@ -74,13 +85,5 @@ module.exports = app;
  * var cookieParser = require('cookie-parser');      // Middleware for parsing cookies
  * var logger = require('morgan');     // Middleware for logging HTTP requests
  *
- * // Importing index + users route
- * var indexRouter = require('./routes/index');   
- * var usersRouter = require('./routes/users');   
- *
  * app.use(logger('dev'));       // Using logger middleware for development
- *
- * // Using routers for respective path
- * app.use('/', indexRouter);          
- * app.use('/users', usersRouter);  
  */

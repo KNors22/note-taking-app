@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-container">
+      <a href='/' class="auth-back">Back</a>
+
+      <div class="auth-header">
+        <h1>Create Account</h1>
+        <p>Start organizing your notes and collections.</p>
+      </div>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="error-message">
+          <%= error %>
+        </div>
+      <% } %>
+
+      <% if (typeof errors !== 'undefined' && errors.length) { %>
+        <div class="error-message">
+          <ul>
+            <% errors.forEach(function(error) { %>
+              <li><%= error.msg || error %></li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form action="/register" method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            value="<%= typeof username !== 'undefined' ? username : '' %>"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            value="<%= typeof email !== 'undefined' ? email : '' %>"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a password"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Register
+        </button>
+      </form>
+
+      <p class="auth-link">
+        Already have an account? <a href="/login">Log in</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>

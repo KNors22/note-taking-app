@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- include('../partials/navbar') -->
+
+<main class="home-page">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Simple Notes, Organized Your Way</h1>
+
+      <p>
+        Create, organize, and manage your notes with collections.
+        Keep your ideas, tasks, and thoughts in one place.
+      </p>
+
+      <div class="hero-actions">
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+          <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+          <a href="/notes/new" class="btn btn-secondary">Create a Note</a>
+        <% } else { %>
+          <a href="/register" class="btn btn-primary">Get Started</a>
+          <a href="/login" class="btn btn-secondary">Log In</a>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>What You Can Do</h2>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <h3>Create Notes</h3>
+        <p>
+          Quickly write notes for school, work, personal ideas, or anything else.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <h3>Use Collections</h3>
+        <p>
+          Group related notes into collections so everything stays organized.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <h3>Access Your Own Notes</h3>
+        <p>
+          Each user has their own account, so your notes stay separate from everyone else's.
+        </p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- include('../partials/footer') -->
+</body>
+</html>

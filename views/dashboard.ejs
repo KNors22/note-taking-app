@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Dashboard</p>
+        <h1>Welcome<%= user && user.username ? `, ${user.username}` : '' %></h1>
+        <p>Jump back into your notes, organize collections, or update your profile.</p>
+      </div>
+
+      <form action="/logout" method="POST">
+        <button type="submit" class="btn btn-secondary">Log Out</button>
+      </form>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Dashboard actions">
+      <article class="dashboard-card">
+        <h2>Notes</h2>
+        <p>Review existing notes or create a new one while the idea is fresh.</p>
+        <div class="dashboard-actions">
+          <a href="/notes" class="btn btn-primary">View Notes</a>
+          <a href="/notes/new" class="btn btn-secondary">New Note</a>
+        </div>
+      </article>
+
+      <article class="dashboard-card">
+        <h2>Collections</h2>
+        <p>Group related notes together so projects and classes stay easy to scan.</p>
+        <div class="dashboard-actions">
+          <a href="/collections" class="btn btn-primary">View Collections</a>
+          <a href="/collections/new" class="btn btn-secondary">New Collection</a>
+        </div>
+      </article>
+
+      <article class="dashboard-card">
+        <h2>Profile</h2>
+        <p>Manage your account details and keep your workspace current.</p>
+        <div class="dashboard-actions">
+          <a href="/users/profile" class="btn btn-primary">View Profile</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

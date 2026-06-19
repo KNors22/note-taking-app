@@ -16,6 +16,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added project documentation with local setup instructions.
 
 
+## [0.4.0] 2026-06-19
+
+### Added
+- Authentication views and styles for login and registration pages.
+- Initial dashboard view for displaying user notes after login.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.3.3...v0.4.0)
+
+
 ## [0.3.3] 2026-06-18
 
 ### Fixed

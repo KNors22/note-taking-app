@@ -1,0 +1,31 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="/">Notetaking App</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <% if (currentUser) { %>
+        <a href="/dashboard" class="site-nav-link <%= currentPath === '/dashboard' ? 'is-active' : '' %>" <% if (currentPath === '/dashboard') { %>aria-current="page"<% } %>>Dashboard</a>
+        <a href="/notes" class="site-nav-link <%= currentPath.startsWith('/notes') ? 'is-active' : '' %>" <% if (currentPath.startsWith('/notes')) { %>aria-current="page"<% } %>>Notes</a>
+        <a href="/collections" class="site-nav-link <%= currentPath.startsWith('/collections') ? 'is-active' : '' %>" <% if (currentPath.startsWith('/collections')) { %>aria-current="page"<% } %>>Collections</a>
+        <a href="/notes/new" class="btn btn-primary site-new-note">New Note</a>
+        <div class="site-user-controls">
+          <a href="/user/profile" class="site-nav-link <%= currentPath.startsWith('/user') ? 'is-active' : '' %>" <% if (currentPath.startsWith('/user')) { %>aria-current="page"<% } %>>
+            <!-- <span class="site-username"><%= currentUser.username %></span> -->
+            <span>Profile</span>
+          </a>
+          <form action="/logout" method="POST">
+            <button type="submit" class="site-nav-link site-logout">Log Out</button>
+          </form>
+        </div>
+      <% } else { %>
+        <% if (currentPath !== '/login') { %>
+          <a href="/login" class="site-nav-link">Log In</a>
+        <% } %>
+        <% if (currentPath !== '/register') { %>
+          <a href="/register" class="btn btn-primary">Register</a>
+        <% } %>
+      <% } %>
+    </nav>
+  </div>
+</header>

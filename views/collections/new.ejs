@@ -8,7 +8,8 @@
   <script src="/js/collectionColors.js" defer></script>
 </head>
 <body>
-  <main class="dashboard-page">
+  <%- include('../partials/header') %>
+  <main id="main-content" class="dashboard-page">
     <section class="dashboard-header">
       <div>
         <p class="dashboard-kicker">Collections</p>
@@ -51,5 +52,6 @@
       </form>
     </section>
   </main>
+  <%- include('../partials/footer') %>
 </body>
 </html>

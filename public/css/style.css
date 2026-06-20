@@ -16,6 +16,136 @@ body {
 body {
   background: linear-gradient(180deg, var(--bg), #fff);
   color: #111;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  padding: 10px 14px;
+  background: #111827;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  background: var(--card);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.site-header-inner,
+.site-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-brand {
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav,
+.site-user-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.site-nav {
+  justify-content: flex-end;
+}
+
+.site-user-controls {
+  padding-left: 8px;
+  border-left: 1px solid #e5e7eb;
+}
+
+.site-user-controls form {
+  margin: 0;
+}
+
+.site-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #374151;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav-link:hover,
+.site-nav-link.is-active {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--accent);
+}
+
+.site-username {
+  max-width: 12ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-new-note {
+  padding: 10px 14px;
+}
+
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid #e5e7eb;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 2px;
+}
+
+.home-page,
+.dashboard-page {
+  box-sizing: border-box;
+  flex: 1;
+  width: 100%;
 }
 
 .home-page {
@@ -360,6 +490,26 @@ body {
 }
 
 @media (max-width: 520px) {
+  .site-header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+  }
+
+  .site-user-controls {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .site-footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .dashboard-header {
     flex-direction: column;
     padding: 24px;

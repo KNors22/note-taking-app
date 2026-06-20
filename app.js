@@ -45,6 +45,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Make authentication and route context available to every EJS view.
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user || null;
+  res.locals.currentPath = req.path;
+  next();
+});
+
 
 // CONNECT TO MONGODB
 mongoose

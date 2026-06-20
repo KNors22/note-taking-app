@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main class="dashboard-page">
+  <%- include('../partials/header') %>
+  <main id="main-content" class="dashboard-page">
     <section class="dashboard-header">
       <div>
         <p class="dashboard-kicker">Notes</p>
@@ -15,7 +16,6 @@
         <p>Keep your ideas organized and easy to revisit.</p>
       </div>
       <div class="dashboard-actions">
-        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
         <a href="/notes/trash" class="btn btn-secondary">Trash</a>
         <% if (notes.length) { %>
           <a href="/notes/new" class="btn btn-primary">New</a>
@@ -52,5 +52,6 @@
       </section>
     <% } %>
   </main>
+  <%- include('../partials/footer') %>
 </body>
 </html>

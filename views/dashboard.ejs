@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main class="dashboard-page">
+  <%- include('partials/header') %>
+  <main id="main-content" class="dashboard-page">
     <section class="dashboard-header">
       <div>
         <p class="dashboard-kicker">Dashboard</p>
@@ -15,9 +16,6 @@
         <p>Jump back into your notes, organize collections, or update your profile.</p>
       </div>
 
-      <form action="/logout" method="POST">
-        <button type="submit" class="btn btn-secondary">Log Out</button>
-      </form>
     </section>
 
     <section class="dashboard-grid" aria-label="Dashboard actions">
@@ -47,5 +45,6 @@
       </article>
     </section>
   </main>
+  <%- include('partials/footer') %>
 </body>
 </html>

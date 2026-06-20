@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main class="dashboard-page">
+  <%- include('../partials/header') %>
+  <main id="main-content" class="dashboard-page">
     <section class="dashboard-header">
       <div>
         <p class="dashboard-kicker">Collections</p>
@@ -15,7 +16,6 @@
         <p>Group related notes by topic, project, or part of your life.</p>
       </div>
       <div class="dashboard-actions">
-        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
         <a href="/collections/new" class="btn btn-primary">New</a>
       </div>
     </section>
@@ -45,5 +45,6 @@
       </section>
     <% } %>
   </main>
+  <%- include('../partials/footer') %>
 </body>
 </html>

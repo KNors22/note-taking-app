@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
-  <main class="auth-page">
+  <%- include('../partials/header') %>
+  <main id="main-content" class="auth-page">
     <section class="auth-container">
       <a href="/user/profile" class="auth-back">Back</a>
 
@@ -54,5 +55,6 @@
       </form>
     </section>
   </main>
+  <%- include('../partials/footer') %>
 </body>
 </html>

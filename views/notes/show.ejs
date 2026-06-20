@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main class="dashboard-page">
+  <%- include('../partials/header') %>
+  <main id="main-content" class="dashboard-page">
     <section class="dashboard-header">
       <div>
         <% if (note.isPinned) { %><p class="dashboard-kicker">Pinned Note</p><% } %>
@@ -36,5 +37,6 @@
       <button type="submit" class="btn btn-danger">Delete Note</button>
     </form>
   </main>
+  <%- include('../partials/footer') %>
 </body>
 </html>

@@ -17,10 +17,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Updated frontend with new styles (v2.0).
 
 
+## [1.1.0] 2026-06-20
+
+### Added
+- Reusable, responsive header and footer partials across all views.
+
+### Changed
+- Standardized page layout and removed redundant navigation controls.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v1.0.1...v1.1.0)
+
+
 ## [1.0.1] 2026-06-20
 
 ### Security
-- Removed code snippets used during development that were vulnerable to security risks
+- Removed code snippets used during development that were vulnerable to security risks.
 
 [Full Changelog](https://github.com/knors22/note-taking-app/compare/v1.0.0...v1.0.1)
 
@@ -28,7 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ## [1.0.0] 2026-06-20
 
 ### Added
-- Complete front-end integration with the backend API to display, create, edit, and delete notes
+- Complete front-end integration with the backend API to display, create, edit, and delete notes.
 - Complete RESTful API routes for managing notes and collections.
 - Five new EJS views for listing, creating, viewing, editing, trashing, and restoring notes.
 - Four new EJS views for listing, creating, viewing, editing, and deleting collections.
@@ -177,7 +188,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - `public/` folder for static assets such as HTML, CSS, and JavaScript files for the front-end interface.
 - `tests/` folder for unit and integration tests
 - `package.json` with project dependencies and scripts for running the application and tests.
-- `app.js` as the main entry point for the Express.js server with boilerplate code
+- `app.js` as the main entry point for the Express.js server with boilerplate code.
 
 [Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.0.1...v0.0.2)
 

@@ -184,6 +184,35 @@ const deleteNote = async (req, res) => {
   }
 };
 
+// POST /notes/:id/restore
+// Restore a soft-deleted note
+const restoreNote = async (req, res) => {
+  try {
+    const note = await Note.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        author: req.user._id,
+        isDeleted: true,
+      },
+      {
+        isDeleted: false,
+      },
+      {
+        returnDocument: 'after',
+      }
+    );
+
+    if (!note) {
+      return res.status(404).render('404');
+    }
+
+    res.redirect('/notes');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error restoring note');
+  }
+};
+
 module.exports = {
     getAllNotes,
     getTrashNotes,
@@ -192,5 +221,6 @@ module.exports = {
     getNoteById,
     getEditNoteForm,
     updateNote,
-    deleteNote
+    deleteNote,
+    restoreNote,
 }

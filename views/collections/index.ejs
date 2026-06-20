@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Collections</p>
+        <h1>Your Collections</h1>
+        <p>Group related notes by topic, project, or part of your life.</p>
+      </div>
+      <div class="dashboard-actions">
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+        <a href="/collections/new" class="btn btn-primary">New</a>
+      </div>
+    </section>
+
+    <% if (collections.length) { %>
+      <section class="dashboard-grid" aria-label="Your collections">
+        <% collections.forEach((collection) => { %>
+          <article class="dashboard-card collection-card" style="border-top-color: <%= collection.color || '#2563eb' %>;">
+            <div>
+              <h2><%= collection.name %></h2>
+              <p><%= collection.description || 'No description yet.' %></p>
+            </div>
+            <div class="dashboard-actions">
+              <a href="/collections/<%= collection._id %>" class="btn btn-primary">View Notes</a>
+              <a href="/collections/<%= collection._id %>/edit" class="btn btn-secondary">Edit</a>
+            </div>
+          </article>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <section class="dashboard-card" style="margin-top: 24px;">
+        <h2>No collections yet</h2>
+        <p>Create one for work, school, recipes, or any topic you want to keep together.</p>
+        <div class="dashboard-actions">
+          <a href="/collections/new" class="btn btn-primary">Create a Collection</a>
+        </div>
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>

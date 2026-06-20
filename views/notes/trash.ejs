@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trash | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Notes</p>
+        <h1>Trash</h1>
+        <p>Notes in trash remain in your account but are hidden from your active notes.</p>
+      </div>
+      <a href="/notes" class="btn btn-secondary">Back to Notes</a>
+    </section>
+
+    <% if (notes.length) { %>
+      <section class="dashboard-grid" aria-label="Deleted notes">
+        <% notes.forEach((note) => { %>
+          <article class="dashboard-card">
+            <h2><%= note.title %></h2>
+            <% if (note.collection) { %><p>Collection: <%= note.collection.name %></p><% } %>
+            <p><%= note.content.length > 100 ? `${note.content.slice(0, 100)}…` : note.content %></p>
+            <form action="/notes/<%= note._id %>/restore" method="POST" class="danger-form">
+              <button type="submit" class="btn btn-primary">Restore Note</button>
+            </form>
+          </article>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <section class="dashboard-card" style="margin-top: 24px;">
+        <h2>Trash is empty</h2>
+        <p>Notes moved to trash will appear here.</p>
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>

@@ -17,6 +17,28 @@ const collectionSchema = new mongoose.Schema(
       default: '',
     },
 
+    color: {
+      type: String,
+      trim: true,
+      enum: {
+        values: [
+          '#2563eb',
+          '#7c3aed',
+          '#db2777',
+          '#dc2626',
+          '#ea580c',
+          '#ca8a04',
+          '#16a34a',
+          '#0891b2',
+          '#475569',
+          '#1f2937',
+        ],
+        message: 'Choose a colour from the available collection palette',
+      },
+      match: [/^#[0-9A-Fa-f]{6}$/, 'Collection colour must be a valid hex value'],
+      default: '#2563eb',
+    },
+
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

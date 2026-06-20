@@ -7,21 +7,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ## [Unreleased]
 
 ### Added
-
-* Added RESTful API routes for managing notes.
-* Added front-end integration with the backend API to display, create, edit, and delete notes.
-* Added clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
 * Added project documentation with local setup instructions.
-
 * Added password modification in /user/edit route.
-* Added collection management features, allowing users to create, view, edit, and delete collections of notes.
-* Added note organization features, allowing users to assign notes to collections and view notes by collection.
 * Added selection and filtering features, allowing users to select and filter notes based on criteria such as collection, creation date, or keywords.
     - Search by note title or content.
     - Filter notes by collection or creation date.
     - Sort notes by title, creation date, or last modified date.
     - Select multiple notes for batch operations such as deletion or moving to a different collection.
-* Updated frontend with new styles.
+* Updated frontend with new styles (v2.0).
+
+
+## [1.0.0] 2026-06-20
+
+### Added
+- Complete front-end integration with the backend API to display, create, edit, and delete notes
+- Complete RESTful API routes for managing notes and collections.
+- Five new EJS views for listing, creating, viewing, editing, trashing, and restoring notes.
+- Four new EJS views for listing, creating, viewing, editing, and deleting collections.
+    - Assign notes to collections and view notes by collection.
+- Color field in `collectionsModel.js` for user to color-code collections.
+- New API endpoints for managing collections and notes.
+- Clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.6.1...v1.0.0)
 
 
 ## [0.6.1] 2026-06-19

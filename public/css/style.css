@@ -204,7 +204,6 @@ body {
 
 .dashboard-card p {
   flex: 1;
-  margin: 0;
   color: var(--muted);
 }
 
@@ -212,6 +211,11 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+/* Keep action rows aligned at the bottom of cards in each dashboard grid row. */
+.dashboard-grid > .dashboard-card > .dashboard-actions {
+  margin-top: auto;
 }
 
 .profile-grid {
@@ -258,6 +262,66 @@ body {
 .danger-form button {
   cursor: pointer;
   font: inherit;
+}
+
+.collection-card {
+  border-top: 5px solid var(--accent);
+}
+
+.collection-header {
+  border-left: 6px solid var(--accent);
+}
+
+.profile-details label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.profile-details input[type='text'],
+.profile-details textarea,
+.profile-details select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.form-hint,
+.form-optional {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.form-hint {
+  margin: 8px 0 0;
+}
+
+.bulk-note-list {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 0;
+  border: 0;
+}
+
+.bulk-note-option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.bulk-note-option small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
 }
 
 .delete-account-status {

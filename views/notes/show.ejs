@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= note.title %> | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <% if (note.isPinned) { %><p class="dashboard-kicker">Pinned Note</p><% } %>
+        <h1><%= note.title %></h1>
+        <p style="margin-top:10px">
+          <% if (note.collection) { %>Collection: <%= note.collection.name %> <% } %>
+        </p>
+        <p>
+          <% if (note.createdAt) { %>Created on: <%= note.createdAt.toLocaleDateString('en-ca') %> <% } %>
+        </p>
+        <p>
+          <% if (note.updatedAt) { %>Last updated: <%=  note.updatedAt.toLocaleDateString('en-ca') %> <% } %>
+        </p>
+      </div>
+      <div class="dashboard-actions">
+        <a href="/notes" class="btn btn-secondary">Back to Notes</a>
+        <a href="/notes/<%= note._id %>/edit" class="btn btn-primary">Edit Note</a>
+      </div>
+    </section>
+
+    <article class="dashboard-card" style="margin-top: 24px;">
+      <p style="white-space: pre-wrap;"><%= note.content %></p>
+    </article>
+
+    <form action="/notes/<%= note._id %>?_method=DELETE" method="POST" class="danger-form" style="margin-top: 16px;">
+      <button type="submit" class="btn btn-danger">Delete Note</button>
+    </form>
+  </main>
+</body>
+</html>

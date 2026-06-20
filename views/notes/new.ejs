@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Note | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Notes</p>
+        <h1>Create a Note</h1>
+        <p>Capture the details while they are fresh.</p>
+      </div>
+      <a href="/notes" class="btn btn-secondary">Back to Notes</a>
+    </section>
+
+    <section class="dashboard-card" style="margin-top: 24px;">
+      <form action="/notes" method="POST" class="profile-details">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" maxlength="100" required>
+        </div>
+        <div>
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="12" required></textarea>
+        </div>
+        <div>
+          <label for="collection">Collection</label>
+          <select id="collection" name="collection">
+            <option value="">No collection</option>
+            <% collections.forEach((collection) => { %>
+              <option value="<%= collection._id %>"><%= collection.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div>
+          <label>
+            <input name="isPinned" type="checkbox">
+            Pin this note
+          </label>
+        </div>
+        <div class="dashboard-actions">
+          <button type="submit" class="btn btn-primary">Create Note</button>
+          <a href="/notes" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

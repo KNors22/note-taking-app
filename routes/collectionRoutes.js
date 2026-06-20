@@ -7,6 +7,7 @@ const { ensureAuthenticated } = require('../middleware/authMiddleware');
 router.get('/', ensureAuthenticated, collectionController.getAllCollections);
 router.get('/new', ensureAuthenticated, collectionController.getNewCollectionForm);
 router.post('/', ensureAuthenticated, collectionController.createCollection);
+router.put('/:id/notes', ensureAuthenticated, collectionController.addNotesToCollection);
 router.get('/:id', ensureAuthenticated, collectionController.getCollectionById);
 router.get('/:id/edit', ensureAuthenticated, collectionController.getEditCollectionForm);
 router.put('/:id', ensureAuthenticated, collectionController.updateCollection);

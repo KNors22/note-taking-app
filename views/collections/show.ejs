@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= collection.name %> | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header collection-header" style="border-left-color: <%= collection.color || '#2563eb' %>;">
+      <div>
+        <p class="dashboard-kicker">Collection</p>
+        <h1><%= collection.name %></h1>
+        <p><%= collection.description || 'Notes organized in this collection.' %></p>
+      </div>
+      <div class="dashboard-actions">
+        <a href="/collections" class="btn btn-secondary">Back to Collections</a>
+        <a href="/collections/<%= collection._id %>/edit" class="btn btn-secondary">Edit</a>
+        <a href="/notes/new" class="btn btn-primary">New Note</a>
+      </div>
+    </section>
+
+    <% if (notes.length) { %>
+      <section class="dashboard-grid" aria-label="Notes in <%= collection.name %>">
+        <% notes.forEach((note) => { %>
+          <article class="dashboard-card">
+            <div>
+              <% if (note.isPinned) { %><p class="dashboard-kicker">Pinned</p><% } %>
+              <h2><%= note.title %></h2>
+              <p><%= note.content.length > 100 ? `${note.content.slice(0, 100)}…` : note.content %></p>
+            </div>
+            <div class="dashboard-actions">
+              <a href="/notes/<%= note._id %>" class="btn btn-primary">View Note</a>
+              <a href="/notes/<%= note._id %>/edit" class="btn btn-secondary">Edit</a>
+            </div>
+          </article>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <section class="dashboard-card" style="margin-top: 24px;">
+        <h2>No notes in this collection</h2>
+        <p>Create a note, then select <%= collection.name %> from its collection list.</p>
+        <a href="/notes/new" class="btn btn-primary">Create a Note</a>
+      </section>
+    <% } %>
+
+    <% if (availableNotes.length) { %>
+      <section class="dashboard-card" style="margin-top: 24px;">
+        <h2>Add Existing Notes</h2>
+        <p>Select one or more active notes to move them into this collection.</p>
+        <form action="/collections/<%= collection._id %>/notes?_method=PUT" method="POST">
+          <fieldset class="bulk-note-list">
+            <legend class="sr-only">Available notes</legend>
+            <% availableNotes.forEach((note) => { %>
+              <label class="bulk-note-option">
+                <input type="checkbox" name="noteIds" value="<%= note._id %>">
+                <span>
+                  <strong><%= note.title %></strong>
+                  <% if (note.collection) { %>
+                    <small>Currently in <%= note.collection.name %></small>
+                  <% } else { %>
+                    <small>Not in a collection</small>
+                  <% } %>
+                </span>
+              </label>
+            <% }) %>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Add Selected Notes</button>
+        </form>
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>

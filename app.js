@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
   res.status(200).render('home', {})
 });
 
-// TESTING CODE ONLY
+// ‼️ TESTING CODE ONLY
 if (process.env.npm_lifecycle_event === 'dev' ) {
   app.get('/dashboard', dashboardRoutes);
   app.use('/', authRoutes);     // Registration and login pages

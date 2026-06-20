@@ -26,11 +26,12 @@ const getNewCollectionForm = (req, res) => {
 // Create collection
 const createCollection = async (req, res) => {
     try {
-        const { name, description } = req.body;
+        const { name, description, color } = req.body;
 
         await Collection.create({
             name,
             description,
+            color,
             author: req.user._id,
         });
 
@@ -58,12 +59,59 @@ const getCollectionById = async (req, res) => {
             collection: collection._id,
             author: req.user._id,
             isDeleted: false,
-        }).sort({ updatedAt: -1 });
+        }).sort({ isPinned: -1, updatedAt: -1 });
 
-        res.render("collections/show", { collection, notes });
+        const availableNotes = await Note.find({
+            author: req.user._id,
+            isDeleted: false,
+            collection: { $ne: collection._id },
+        })
+            .populate('collection', 'name')
+            .sort({ isPinned: -1, updatedAt: -1 });
+
+        res.render("collections/show", { collection, notes, availableNotes });
     } catch (error) {
         console.error(error);
         res.status(500).send("Error loading collection");
+    }
+};
+
+// PUT /collections/:id/notes
+// Add selected active notes to a collection in one operation
+const addNotesToCollection = async (req, res) => {
+    try {
+        const collection = await Collection.findOne({
+            _id: req.params.id,
+            author: req.user._id,
+        });
+
+        if (!collection) {
+            return res.status(404).render("404");
+        }
+
+        const noteIds = Array.isArray(req.body.noteIds)
+            ? req.body.noteIds
+            : req.body.noteIds
+                ? [req.body.noteIds]
+                : [];
+
+        if (noteIds.length) {
+            await Note.updateMany(
+                {
+                    _id: { $in: noteIds },
+                    author: req.user._id,
+                    isDeleted: false,
+                },
+                {
+                    collection: collection._id,
+                },
+            );
+        }
+
+        res.redirect(`/collections/${collection._id}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error adding notes to collection");
     }
 };
 
@@ -91,7 +139,7 @@ const getEditCollectionForm = async (req, res) => {
 // Update collection
 const updateCollection = async (req, res) => {
     try {
-        const { name, description } = req.body;
+        const { name, description, color } = req.body;
 
         const collection = await Collection.findOneAndUpdate(
             {
@@ -101,6 +149,7 @@ const updateCollection = async (req, res) => {
             {
                 name,
                 description,
+                color,
             },
             {
                 returnDocument: 'after',
@@ -155,6 +204,7 @@ module.exports = {
     getNewCollectionForm,
     createCollection,
     getCollectionById,
+    addNotesToCollection,
     getEditCollectionForm,
     updateCollection,
     deleteCollection,

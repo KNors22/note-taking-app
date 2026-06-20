@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Notes</p>
+        <h1>Your Notes</h1>
+        <p>Keep your ideas organized and easy to revisit.</p>
+      </div>
+      <div class="dashboard-actions">
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+        <a href="/notes/trash" class="btn btn-secondary">Trash</a>
+        <% if (notes.length) { %>
+          <a href="/notes/new" class="btn btn-primary">New</a>
+        <% } %>
+      </div>
+    </section>
+
+    <% if (notes.length) { %>
+      <section class="dashboard-grid" aria-label="Your notes">
+        <% notes.forEach((note) => { %>
+          <article class="dashboard-card">
+            <div>
+              <% if (note.isPinned) { %><p class="dashboard-kicker">Pinned</p><% } %>
+              <h2><%= note.title %></h2>
+              <% if (note.collection) { %>
+                <p style="margin-top:10px">Collection: <%= note.collection.name %></p>
+              <% } %>
+              <p><%= note.content.length > 100 ? `${note.content.slice(0, 100)}…` : note.content %></p>
+            </div>
+            <div class="dashboard-actions">
+              <a href="/notes/<%= note._id %>" class="btn btn-primary">View</a>
+              <a href="/notes/<%= note._id %>/edit" class="btn btn-secondary">Edit</a>
+            </div>
+          </article>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <section class="dashboard-card" style="margin-top: 24px;">
+        <h2>No notes yet</h2>
+        <p>Create your first note to start building your workspace.</p>
+        <div class="dashboard-actions">
+          <a href="/notes/new" class="btn btn-primary">Create a Note</a>
+        </div>
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>

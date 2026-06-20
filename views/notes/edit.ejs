@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit <%= note.title %> | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Notes</p>
+        <h1>Edit Note</h1>
+        <p>Update the content, organization, or status of this note.</p>
+      </div>
+      <a href="/notes" class="btn btn-secondary">Cancel</a>
+    </section>
+
+    <section class="dashboard-card" style="margin-top: 24px;">
+      <form action="/notes/<%= note._id %>?_method=PUT" method="POST" class="profile-details">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" maxlength="100" value="<%= note.title %>" required>
+        </div>
+        <div>
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="12" required><%= note.content %></textarea>
+        </div>
+        <div>
+          <label for="collection">Collection</label>
+          <select id="collection" name="collection">
+            <option value="">No collection</option>
+            <% collections.forEach((collection) => { %>
+              <option value="<%= collection._id %>" <%= note.collection && note.collection.toString() === collection._id.toString() ? 'selected' : '' %>><%= collection.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div>
+          <label>
+            <input name="isPinned" type="checkbox" <%= note.isPinned ? 'checked' : '' %>>
+            Pin this note
+          </label>
+          <label>
+            <input name="isArchived" type="checkbox" <%= note.isArchived ? 'checked' : '' %>>
+            Archive this note
+          </label>
+        </div>
+        <div class="dashboard-actions">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <a href="/notes" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+
+      <form action="/notes/<%= note._id %>?_method=DELETE" method="POST" class="danger-form" style="margin-top: 24px;">
+        <button type="submit" class="btn btn-danger">Move to Trash</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

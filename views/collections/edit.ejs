@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit <%= collection.name %> | Notetaking App</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/collectionColors.js" defer></script>
+</head>
+<body>
+  <main class="dashboard-page">
+    <section class="dashboard-header">
+      <div>
+        <p class="dashboard-kicker">Collections</p>
+        <h1>Edit Collection</h1>
+        <p>Update the name, description, or colour used to identify this collection.</p>
+      </div>
+      <a href="/collections/<%= collection._id %>" class="btn btn-secondary">Cancel</a>
+    </section>
+
+    <section class="dashboard-card" style="margin-top: 24px;">
+      <form action="/collections/<%= collection._id %>?_method=PUT" method="POST" class="profile-details">
+        <div>
+          <label for="name">Collection name</label>
+          <input id="name" name="name" type="text" list="collection-suggestions" maxlength="50" value="<%= collection.name %>" required>
+          <datalist id="collection-suggestions">
+            <option value="💼 Work"></option>
+            <option value="🎓 School"></option>
+            <option value="🏠 Personal"></option>
+            <option value="🍳 Cooking"></option>
+            <option value="🎨 Hobby"></option>
+            <option value="🏃 Health & Fitness"></option>
+            <option value="✈️ Travel"></option>
+            <option value="📚 Reading"></option>
+          </datalist>
+        </div>
+        <div>
+          <label for="description">Description <span class="form-optional">(optional)</span></label>
+          <textarea id="description" name="description" rows="4" maxlength="250"><%= collection.description %></textarea>
+        </div>
+        <div>
+          <label for="color">Collection colour</label>
+          <select id="color" name="color" data-collection-color-select data-selected-color="<%= collection.color || '' %>" aria-describedby="color-hint"></select>
+          <p id="color-hint" class="form-hint">Choose one of the 10 collection colours.</p>
+        </div>
+        <div class="dashboard-actions">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <a href="/collections/<%= collection._id %>" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+
+      <form action="/collections/<%= collection._id %>?_method=DELETE" method="POST" class="danger-form" style="margin-top: 24px;" onsubmit="return confirm('Delete this collection? Its notes will remain, but they will no longer belong to this collection.');">
+        <button type="submit" class="btn btn-danger">Delete Collection</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

@@ -12,15 +12,6 @@ function ensureAuthenticated(req, res, next) {
   //   return next();
   // }
 
-  // ‼️ TESTING ONLY
-  // try {
-  //   if (process.env.npm_lifecycle_event === 'dev')
-  //   console.log(`[authMiddleware] 'req.isAuthenticated()': ${req.isAuthenticated()}`);
-  // } catch (e) {
-  //   console.log('[authMiddleware] ERROR! ', e.message, '\n\n');
-  //   throw(e);
-  // }
-
   if (req.isAuthenticated && req.isAuthenticated()) {
     return next();
   }

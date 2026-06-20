@@ -15,13 +15,6 @@ passport.use(
 
       const validPassword = await bcrypt.compare(password, user.passwordHash);
 
-      // ‼️ TESTING ONLY
-      // if (process.env.npm_lifecycle_event === 'dev') {
-      //   console.log(`\nUser: ${user}`);
-      //   console.log(`>> Entered password: ${await bcrypt.hash(password, 10)}`);
-      //   console.log(">> Password valid:", validPassword);
-      // }
-
       if (!validPassword) {
         return done(null, false, { message: 'Invalid username or password' });
       }

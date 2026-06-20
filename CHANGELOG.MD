@@ -17,6 +17,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Updated frontend with new styles (v2.0).
 
 
+## [1.0.1] 2026-06-20
+
+### Security
+- Removed code snippets used during development that were vulnerable to security risks
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v1.0.0...v1.0.1)
+
+
 ## [1.0.0] 2026-06-20
 
 ### Added

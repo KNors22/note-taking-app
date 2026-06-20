@@ -10,12 +10,30 @@ const getAllNotes = async (req, res) => {
       isDeleted: false,
     })
       .populate('collection')
-      .sort({ updatedAt: -1 });
+      .sort({ isPinned: -1, updatedAt: -1 });
 
     res.render('notes/index', { notes });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error loading notes');
+  }
+};
+
+// GET /notes/trash
+// Show soft-deleted notes without removing them from the database
+const getTrashNotes = async (req, res) => {
+  try {
+    const notes = await Note.find({
+      author: req.user._id,
+      isDeleted: true,
+    })
+      .populate('collection')
+      .sort({ updatedAt: -1 });
+
+    res.render('notes/trash', { notes });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading trash');
   }
 };
 
@@ -130,7 +148,7 @@ const updateNote = async (req, res) => {
       return res.status(404).render('404');
     }
 
-    res.redirect(`/notes/${note._id}`);
+    res.redirect(`/notes`);
   } catch (error) {
     console.error(error);
     res.status(400).send('Error updating note');
@@ -145,6 +163,7 @@ const deleteNote = async (req, res) => {
       {
         _id: req.params.id,
         author: req.user._id,
+        isDeleted: false,
       },
       {
         isDeleted: true,
@@ -167,6 +186,7 @@ const deleteNote = async (req, res) => {
 
 module.exports = {
     getAllNotes,
+    getTrashNotes,
     getNewNoteForm,
     createNote,
     getNoteById,

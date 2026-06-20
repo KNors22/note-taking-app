@@ -98,30 +98,39 @@ note-taking-app/
 │
 ├── controllers/
 │   ├── authController.js
-│   ├── userController.js
+│   ├── collectionController.js
 │   ├── noteController.js
-│   └── collectionController.js
+│   └── userController.js
 ├── middleware/
-│   └── authMiddleware.js
+│   ├── authMiddleware.js
+│   └── passport.js
 ├── models/
-│   ├── userModel.js
+│   ├── collectionModel.js
 │   ├── noteModel.js
-│   └── collectionModel.js
-├── routes/
+│   └── userModel.js
 ├── public/
-│   └── css/
+│   ├── css/
+│   └── js/
+├── routes/
+│   ├── authRoutes.js
+│   ├── collectionRoutes.js
+│   ├── dashboardRoutes.js
+│   ├── noteRoutes.js
+│   └── userRoutes.js
 ├── tests/
 ├── views/
 │   ├── auth/
 │   ├── collections/
 │   ├── notes/
 │   ├── partials/
-│   └── user/
+│   ├── user/
+│   ├── dashboard.ejs
+│   └── home.ejs
 ├── app.js
-├── package.json
-├── README.md
 ├── CHANGELOG.md
-└── LICENSE
+├── LICENSE
+├── package.json
+└── README.md
 ```
 
 ## RESTful API Endpoints

@@ -13,6 +13,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 * Added clear error responses for invalid requests, missing data, validation failures, and unauthorized actions.
 * Added project documentation with local setup instructions.
 
+* Added password modification in /user/edit route.
+* Added collection management features, allowing users to create, view, edit, and delete collections of notes.
+* Added note organization features, allowing users to assign notes to collections and view notes by collection.
+* Added selection and filtering features, allowing users to select and filter notes based on criteria such as collection, creation date, or keywords.
+    - Search by note title or content.
+    - Filter notes by collection or creation date.
+    - Sort notes by title, creation date, or last modified date.
+    - Select multiple notes for batch operations such as deletion or moving to a different collection.
+* Updated frontend with new styles.
+
+
+## [0.6.1] 2026-06-19
+
+### Added
+- Soft-deleting notes by adding a `deleted` field to the Note model and updating API endpoints to mark notes as deleted instead of permanently removing them from the database.
+- Option to move notes in the trash back to the main notes collection.
+
+### Removed
+- Archive feature, including the `archived` field in the Note model and related API endpoints and frontend functionality.
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v0.6.0...v0.6.1)
+
 
 ## [0.6.0] 2026-06-19
 

@@ -14,6 +14,8 @@ const noteRoutes = require('./routes/noteRoutes');
 const collectionRoutes = require('./routes/collectionRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+const generateSampleData = require('./seeders/demo');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -55,11 +57,19 @@ app.use((req, res, next) => {
 
 // CONNECT TO MONGODB
 mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log('>> Connected to MongoDB\n'))
-  .catch((err) => console.log('\n\nError while connecting to DB: ', err))
-  ;
+  .connect(/*MONGO_URI*/ process.env.MONGO_URI_LOCAL)  // ‼️ MODIFY BEFORE PRODUCTION!!
+  .then(async () => {
+    console.log('>> Connected to MongoDB');
 
+    // ONLY LOAD SEEDERS IF IN DEMO MODE
+    // if (process.env.npm_lifecycle_event === 'demo') { // ‼️ MODIFY BEFORE PRODUCTION!!
+    if (process.env.npm_lifecycle_event === 'dev') { // ‼️ MODIFY BEFORE PRODUCTION!!
+      await generateSampleData();
+    }
+
+  })
+  .catch((err) => console.log('>> Error while connecting to DB...\n', err))
+;
 
 // CONNECT REQUEST HANDLERS TO ROUTE HANDLERS
 app.get('/', (req, res) => {

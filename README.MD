@@ -117,6 +117,8 @@ note-taking-app/
 │   ├── dashboardRoutes.js
 │   ├── noteRoutes.js
 │   └── userRoutes.js
+├── seeders/
+│   └── demo.js
 ├── tests/
 ├── views/
 │   ├── auth/

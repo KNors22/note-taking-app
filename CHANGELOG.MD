@@ -15,6 +15,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
     - Sort notes by title, creation date, or last modified date.
     - Select multiple notes for batch operations such as deletion or moving to a different collection.
 * Updated frontend with new styles (v2.0).
+* Added note modification feature on `/notes` page, allowing users to edit note content, title and category directly from the note view page without needing to navigate to a separate edit page.
+* Remove unused archive feature for notes.
+* Created interactive tutorial page with instructions on how to use the app and its features.
+* Improved instructions on how to use and connect to MongoDB.
+* Added project difficulties and challenges in the README.
+
+
+## [1.2.0] 2026-06-27
+
+### Added
+- Seeders for demo data, including example users, notes, and collections to populate the database for demonstration purposes.
+
+### Changed
+- Collection suggestions options
+
+[Full Changelog](https://github.com/knors22/note-taking-app/compare/v1.1.0...v1.2.0)
 
 
 ## [1.1.0] 2026-06-20

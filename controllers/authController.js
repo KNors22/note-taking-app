@@ -1,5 +1,5 @@
 const passport = require('passport');
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 const User = require("../models/userModel");
 
 // GET /register

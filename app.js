@@ -18,16 +18,29 @@ const generateSampleData = require('./seeders/demo');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProduction = process.env.NODE_ENV === 'production';
 
-const MONGO_URI = process.env.npm_lifecycle_event === 'dev' 
-  ?  process.env.MONGO_URI_LOCAL 
-  :  process.env.MONGO_URI_USER
-;
+const MONGO_URI = isProduction
+  ? process.env.MONGO_URI
+  : process.env.MONGO_URI_LOCAL || process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  throw new Error('Missing MongoDB connection string. Set MONGO_URI for production or MONGO_URI_LOCAL for development.');
+}
+
+if (!process.env.SESSION_SECRET) {
+  throw new Error('Missing SESSION_SECRET environment variable.');
+}
 
 // SETUP INITIALIZATION
 app.set('view engine', 'ejs');
+
+if (isProduction) {
+  app.set('trust proxy', 1);
+}
+
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));   // Allows for PUT and DELETE in HTML forms
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -39,8 +52,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    sameSite: 'lax', 
-    secure: process.env.npm_lifecycle_event !== 'dev',  // ‼️ MODIFY BEFORE PRODUCTION!!
+    sameSite: 'lax',
+    secure: isProduction,
   },
 }));
 
@@ -57,18 +70,19 @@ app.use((req, res, next) => {
 
 // CONNECT TO MONGODB
 mongoose
-  .connect(/*MONGO_URI*/ process.env.MONGO_URI_LOCAL)  // ‼️ MODIFY BEFORE PRODUCTION!!
+  .connect(MONGO_URI, { serverSelectionTimeoutMS: 5000 })
   .then(async () => {
     console.log('>> Connected to MongoDB');
 
-    // ONLY LOAD SEEDERS IF IN DEMO MODE
-    // if (process.env.npm_lifecycle_event === 'demo') { // ‼️ MODIFY BEFORE PRODUCTION!!
-    if (process.env.npm_lifecycle_event === 'dev') { // ‼️ MODIFY BEFORE PRODUCTION!!
+    if (!isProduction && process.env.npm_lifecycle_event === 'dev') {
       await generateSampleData();
     }
 
   })
-  .catch((err) => console.log('>> Error while connecting to DB...\n', err))
+  .catch((err) => {
+    console.error('>> Error while connecting to DB...\n', err);
+    process.exit(1);
+  })
 ;
 
 // CONNECT REQUEST HANDLERS TO ROUTE HANDLERS
@@ -76,16 +90,9 @@ app.get('/', (req, res) => {
   res.status(200).render('home', {})
 });
 
-// ‼️ TESTING CODE ONLY
-if (process.env.npm_lifecycle_event === 'dev' ) {
-  app.get('/dashboard', dashboardRoutes);
-  app.use('/', authRoutes);     // Registration and login pages
-}
-else {
-  // FIRST AUTHENTICATE, THEN PROCESS REQUESTS
-  app.use('/', authRoutes);     // Registration and login pages
-  app.get('/dashboard', dashboardRoutes); // PROD
-}
+// FIRST AUTHENTICATE, THEN PROCESS REQUESTS
+app.use('/', authRoutes);     // Registration and login pages
+app.get('/dashboard', dashboardRoutes);
 
 app.use('/notes', noteRoutes);
 app.use('/collections', collectionRoutes);
@@ -110,9 +117,6 @@ process.on('SIGINT', async () => {
   } catch (err) {
     console.error('\n >> Error while disconnecting from MongoDB:', err);
     process.exit(1); // Exit the process with an error code
-  }
-  finally {
-    console.log('\t‼️ MONGODB SERVICE IS STILL RUNNING ‼️');
   }
 });
 

@@ -16,15 +16,58 @@ A simple note taking application built as a midterm project. This repository con
    ```bash
    npm install
    ```
-4. Start the application:
+4. Create a local environment file:
+   ```bash
+   cp .env.example .env
+   ```
+5. Update the values in `.env`, then start the application:
    ```bash
    npm start
    ```
 
+## Environment Configuration
+The app uses Mongoose to connect to MongoDB. In development it reads `MONGO_URI_LOCAL`; in production it reads `MONGO_URI`.
+
+Required variables:
+```env
+NODE_ENV=development
+PORT=3000
+MONGO_URI_LOCAL=mongodb://127.0.0.1:27017/note-taking-app
+MONGO_URI=mongodb+srv://APP_USER:APP_PASSWORD@cluster0.example.mongodb.net/note-taking-app?retryWrites=true&w=majority
+SESSION_SECRET=replace-with-a-long-random-secret
+```
+
+For local development, keep `NODE_ENV=development` and set `MONGO_URI_LOCAL` to a local MongoDB database.
+
+For a remote MongoDB database, set `NODE_ENV=production` in your hosting provider and set `MONGO_URI` to the connection string from MongoDB Atlas or your MongoDB host. Do not commit your real `.env` file or database password.
+
+## Remote MongoDB Setup
+1. Create or open a MongoDB Atlas project.
+2. Create a database user with a strong password.
+3. Add your deployment server IP address to Atlas Network Access. For local testing, add your current IP address.
+4. Copy the Atlas Node.js connection string.
+5. Replace the username, password, cluster hostname, and database name in `MONGO_URI`.
+6. Deploy with `NODE_ENV=production` so the app uses `MONGO_URI` instead of `MONGO_URI_LOCAL`.
+
+Example production value:
+```env
+NODE_ENV=production
+MONGO_URI=mongodb+srv://notes_app_user:strong-password@cluster0.abcde.mongodb.net/note-taking-app?retryWrites=true&w=majority
+SESSION_SECRET=another-long-random-production-secret
+```
+
+The app connects to a MongoDB database, and Mongoose creates or uses collections based on the model names. The current models write to the default `users`, `notes`, and `collections` collections.
+
+If you need to use an existing collection with a custom name, pass the collection name as the third argument to `mongoose.model`:
+```js
+const Note = mongoose.model('Note', noteSchema, 'my_existing_notes_collection');
+```
+
 ## Usage
 - Open the app in your browser.
+- Register or log in.
 - Create, edit, and delete notes.
-- Use the interface to organize and save your notes.
+- Use collections to organize and save your notes.
 
 ## Features
 
@@ -46,9 +89,9 @@ A simple note taking application built as a midterm project. This repository con
 
 * **Database Integration**
 
-  * Uses a database such as MongoDB or SQLite to store note data.
-  * Connects the Node.js application to the selected database.
-  * Implements data models to interact with stored notes.
+  * Uses MongoDB to store user, note, and collection data.
+  * Connects the Node.js application to local or remote MongoDB databases using environment variables.
+  * Implements Mongoose data models to interact with stored notes.
 
 * **Note Management**
 
@@ -95,44 +138,45 @@ A simple note taking application built as a midterm project. This repository con
 ## File structure
 ```
 note-taking-app/
-│
-├── controllers/
-│   ├── authController.js
-│   ├── collectionController.js
-│   ├── noteController.js
-│   └── userController.js
-├── middleware/
-│   ├── authMiddleware.js
-│   └── passport.js
-├── models/
-│   ├── collectionModel.js
-│   ├── noteModel.js
-│   └── userModel.js
-├── public/
-│   ├── css/
-│   └── js/
-├── routes/
-│   ├── authRoutes.js
-│   ├── collectionRoutes.js
-│   ├── dashboardRoutes.js
-│   ├── noteRoutes.js
-│   └── userRoutes.js
-├── seeders/
-│   └── demo.js
-├── tests/
-├── views/
-│   ├── auth/
-│   ├── collections/
-│   ├── notes/
-│   ├── partials/
-│   ├── user/
-│   ├── dashboard.ejs
-│   └── home.ejs
-├── app.js
-├── CHANGELOG.md
-├── LICENSE
-├── package.json
-└── README.md
+|
+|-- controllers/
+|   |-- authController.js
+|   |-- collectionController.js
+|   |-- noteController.js
+|   `-- userController.js
+|-- middleware/
+|   |-- authMiddleware.js
+|   `-- passport.js
+|-- models/
+|   |-- collectionModel.js
+|   |-- noteModel.js
+|   `-- userModel.js
+|-- public/
+|   |-- css/
+|   `-- js/
+|-- routes/
+|   |-- authRoutes.js
+|   |-- collectionRoutes.js
+|   |-- dashboardRoutes.js
+|   |-- noteRoutes.js
+|   `-- userRoutes.js
+|-- seeders/
+|   `-- demo.js
+|-- tests/
+|-- views/
+|   |-- auth/
+|   |-- collections/
+|   |-- notes/
+|   |-- partials/
+|   |-- user/
+|   |-- dashboard.ejs
+|   `-- home.ejs
+|-- .env.example
+|-- app.js
+|-- CHANGELOG.md
+|-- LICENSE
+|-- package.json
+`-- README.md
 ```
 
 ## RESTful API Endpoints
